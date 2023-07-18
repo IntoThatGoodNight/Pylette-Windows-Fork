@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 from sklearn.cluster import KMeans
 
-from Pylette.aux import ColorBox
+from Pylette.auxiliary import ColorBox
 from Pylette.color import Color
 from Pylette.palette import Palette
 
@@ -77,7 +77,7 @@ def k_means_extraction(arr, height, width, palette_size):
     arr = np.reshape(arr, (width * height, -1))
     model = KMeans(n_clusters=palette_size)
     labels = model.fit_predict(arr)
-    palette = np.array(model.cluster_centers_, dtype=np.int)
+    palette = np.array(model.cluster_centers_, dtype=np.int32)
     color_count = np.bincount(labels)
     color_frequency = color_count / float(np.sum(color_count))
     colors = []
